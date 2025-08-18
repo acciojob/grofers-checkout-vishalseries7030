@@ -1,4 +1,4 @@
-// Add the button to trigger the sum
+// Create button dynamically
 const getSumBtn = document.createElement("button");
 getSumBtn.textContent = "Get Total Price";
 document.body.appendChild(getSumBtn);
@@ -8,11 +8,11 @@ getSumBtn.addEventListener("click", getSum);
 function getSum() {
   const table = document.getElementById("grocery-list");
   
-  // Remove existing total row (if any)
+  // Remove existing total row if any
   const existing = table.querySelector(".total-row");
   if (existing) existing.remove();
-  
-  // Get all price cells
+
+  // Collect all prices
   const priceCells = table.querySelectorAll(".price");
   let total = 0;
   
@@ -20,14 +20,14 @@ function getSum() {
     const val = parseFloat(cell.textContent);
     if (!isNaN(val)) total += val;
   });
-  
-  // Create a new row for the total
+
+  // Create a new row for total
   const row = document.createElement("tr");
   row.classList.add("total-row");
   const cell = document.createElement("td");
   cell.setAttribute("colspan", 2);
   cell.textContent = `Total Price: Rs ${total}`;
-  
+
   row.appendChild(cell);
   table.appendChild(row);
 }
